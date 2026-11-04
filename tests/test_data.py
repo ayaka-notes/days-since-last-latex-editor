@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from build import validate, esc, unmaintained, first_commit_date, latest_exact_date
+from build import validate, esc, unmaintained, first_commit_date, repository_start_date, latest_exact_date
 
 
 class DataTests(unittest.TestCase):
@@ -43,8 +43,16 @@ class DataTests(unittest.TestCase):
     def test_unverified_cached_commit_is_not_a_fallback_date(self):
         metadata = {'first_commit_at': '2007-03-01T05:53:59Z'}
         self.assertEqual(first_commit_date(metadata), '')
-        metadata.update(first_commit_at='2013-08-08T15:42:14Z', first_commit_verified_root=True)
+        metadata.update(first_commit_at='2013-08-08T15:42:14Z', first_commit_verified_root=True, fork=False)
         self.assertEqual(first_commit_date(metadata), '2013-08-08')
+
+    def test_fork_date_does_not_inherit_upstream_commit(self):
+        metadata = {'fork': True, 'forked_at': '2024-12-03T12:00:00Z',
+                    'first_commit_at': '2013-08-08T15:42:14Z', 'first_commit_verified_root': True}
+        self.assertEqual(first_commit_date(metadata), '')
+        self.assertEqual(repository_start_date(metadata), '2024-12-03')
+        del metadata['forked_at']
+        self.assertEqual(repository_start_date(metadata), '')
 
     def test_inactivity_uses_calendar_months_and_known_commits(self):
         from datetime import date

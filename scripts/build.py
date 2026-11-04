@@ -69,7 +69,13 @@ def unmaintained(metadata, today=None):
 
 
 def first_commit_date(metadata):
-    return metadata.get('first_commit_at', '')[:10] if metadata.get('first_commit_verified_root') else ''
+    return metadata.get('first_commit_at', '')[:10] if metadata.get('first_commit_verified_root') and metadata.get('fork') is False else ''
+
+
+def repository_start_date(metadata):
+    if metadata.get('fork') is True:
+        return metadata.get('forked_at', '')[:10]
+    return first_commit_date(metadata)
 
 
 def latest_exact_date(dates):
@@ -85,7 +91,7 @@ def build():
     def entry_date(row):
         repo = repository(row['source'])
         metadata = snapshot['repositories'].get((repo or '').lower(), {})
-        return row['date'] or first_commit_date(metadata)
+        return row['date'] or repository_start_date(metadata)
 
     dated = sorted((r for r in rows if entry_date(r)), key=entry_date, reverse=True)
     latest_date = latest_exact_date(entry_date(row) for row in dated)
@@ -111,6 +117,8 @@ def build():
             counts = f'<span class="repo-counts" title="GitHub snapshot: {esc(stamp)}{stale}">{link(r["source"] + "/stargazers", "★ " + stars, "Stars")} · {link(r["source"] + "/forks", "⑂ " + forks, "Forks")}{" *" if stale else ""}</span>'
         if r['date']:
             debut = f'{esc(r["date_basis"].lower())} <time datetime="{r["date"]}">{r["date"]}</time>'
+        elif m.get('fork') and repository_start_date(m):
+            debut = link(r['source'], 'forked ' + repository_start_date(m), "Creation date of this GitHub fork, not the upstream project's first commit.")
         elif first_commit_date(m):
             debut = link(m.get('first_commit_url'), 'first commit ' + first_commit_date(m), "Oldest verified root commit found in the public default-branch history. Imported history may predate the editor; private or omitted commits are not covered. This is not a release date.")
         elif re.fullmatch(r'\d{4}(?:-\d{2})?', r.get('discussion_debut', '')):
@@ -148,7 +156,7 @@ def build():
 <main><section class="counter" aria-labelledby="counter-title"><h1 id="counter-title">It has been</h1><div id="days" data-last-release="{latest_date}">{days}</div><p id="sentence-end">days since the latest known new LaTeX editor</p></section>
 <div class="timeline-wrap" tabindex="0" role="region" aria-label="All LaTeX editors; scroll horizontally on small screens"><table class="timeline"><caption class="sr-only">All {len(rows)} LaTeX editors, newest dated entries first</caption><thead class="sr-only"><tr><th>Editor</th><th>Category / Maintenance</th><th>Date</th><th>Repository</th><th>Announcement and discussion</th><th>Stars / Forks</th></tr></thead><tbody>{''.join(timeline)}</tbody></table></div>
 </main><footer><p>{len(rows)} editors · {len(dated)} dated entries · <a href="{REPO}/issues/new?template=editor.yml">add or correct an editor</a></p>
-<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, first commit dates link to a verified root commit in the public default-branch history. Backdated non-root commits are excluded; inherited upstream history may predate a fork, and private or omitted history is not covered. Projects without public GitHub history may show a reported month/year from Discussion #146. Reviewed dates take precedence for ordering. The counter uses exact days, with verified public root commits as the fallback when no reviewed date is known. Year/month-only dates and routine updates do not reset the counter; known years are displayed without inventing a month or day. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Each editor has one category: Local takes precedence when a local editor is available, including on-device browser editors, even if server deployment is also supported. Selfhosted means a server-deployed web editor. SaaS means a vendor-operated hosted service, with free or subscription plans; a static browser-editor demo alone is not SaaS.</p><p>Red unmaintained labels replace the category when there is no commit on the default branch or a reviewed development branch in the last three calendar months. Unknown or failed lookups are not classified. This activity rule does not establish that a project has been abandoned.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
+<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, first commit dates link to a verified root commit in the public default-branch history. Backdated non-root commits are excluded; private or omitted history is not covered. Forks use their own GitHub creation date, labelled forked, instead of inherited upstream commits. Projects without public GitHub history may show a reported month/year from Discussion #146. Reviewed dates take precedence for ordering. The counter uses exact days, with fork creation dates or verified public root commits as the fallback when no reviewed date is known. Year/month-only dates and routine updates do not reset the counter; known years are displayed without inventing a month or day. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Each editor has one category: Local takes precedence when a local editor is available, including on-device browser editors, even if server deployment is also supported. Selfhosted means a server-deployed web editor. SaaS means a vendor-operated hosted service, with free or subscription plans; a static browser-editor demo alone is not SaaS.</p><p>Red unmaintained labels replace the category when there is no commit on the default branch or a reviewed development branch in the last three calendar months. Unknown or failed lookups are not classified. This activity rule does not establish that a project has been abandoned.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
 <p>Inspired by <a href="https://days-since-last-typst-editor.samake.se/">Days since last Typst editor</a> by <a href="https://github.com/sermuns">Samuel “sermuns” Åkesson</a>.</p></footer></body></html>'''
     (out / 'index.html').write_text(page)
     for name in ('style.css', 'script.js', 'favicon.svg', 'data.csv', 'github-snapshot.json', 'discussion-146.json', 'reddit-sources.json', 'research-audit.json'):

@@ -39,10 +39,9 @@ Edit `data.csv`; the site is rebuilt on every push to `main`.
 | `discussion_license`, `discussion_status` | Original comparison labels preserved for provenance, not asserted as current state |
 
 Reviewed dates take precedence for display and ordering. The counter uses exact days only,
-falling back to the first verified public root commit when no reviewed date is known. Repository creation,
-ordinary version updates and month-only dates do not reset it. Unknown dates remain
-visible. When no reviewed date is known, the list uses the oldest verified root commit in the public default-branch history, linked to that commit. Timestamp-sorted API results are checked for parents; a backdated non-root commit is not treated as an initial commit. If no root can be verified, the fallback is omitted.
-Fork history can include upstream commits. Projects without public GitHub history
+falling back to the fork creation date for a GitHub fork or the first verified public root commit for other repositories. Ordinary repository creation, version updates and month-only dates do not reset it. A confirmed fork uses its own GitHub creation date, labelled `forked`. Unknown dates remain
+visible. When no reviewed date is known for a non-fork repository, the list uses the oldest verified root commit in the public default-branch history, linked to that commit. Timestamp-sorted API results are checked for parents; a backdated non-root commit is not treated as an initial commit. If no root can be verified, the fallback is omitted.
+Forks never use inherited upstream commit dates as their own fallback. Projects without public GitHub history
 may use a reported month/year from Discussion #146. Both are explicitly labelled.
 Year/month-only dates never reset the counter, and are displayed at their original precision. A first retained release is not proof that no earlier release existed. Public root commits do not establish the date of private or omitted history. Overleaf uses the officially documented founding year (2011); Overleaf CE uses the ShareLaTeX open-source announcement (2014-02-21).
 The two Folio projects and two Scribe projects remain separate. The LatexDo
@@ -50,7 +49,7 @@ desktop repository is used for its desktop app; the original link is preserved
 in `discussion-146.json`.
 
 `github-snapshot.json` records stars, forks, detected SPDX license, default-branch
-commit dates (oldest and latest), commit count (when available), and per-repository retrieval times.
+commit dates (oldest and latest), commit count (when available), fork status, parent repository, fork creation dates, and per-repository retrieval times.
 `activity_branch` in `data.csv` optionally names a reviewed development branch for maintenance checks (for example, BlaBlaTex uses `develop`). This never changes the first-commit fallback or release date. The branch is refreshed daily; a failed lookup does not mark the project unmaintained. Hosted and self-hosted editions may share an upstream repository, as with Overleaf and Overleaf CE.
 
 Commit count covers the default branch's reachable history, including inherited

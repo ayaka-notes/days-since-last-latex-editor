@@ -63,6 +63,10 @@ def refresh():
         try:
             m, _ = fetch('repos/' + repo)
             result = dict(name=m['full_name'], stars=m['stargazers_count'], forks=m['forks_count'], license=(m.get('license') or {}).get('spdx_id'), archived=m['archived'], created_at=m['created_at'], pushed_at=m['pushed_at'], url=m['html_url'], checked_at=now())
+            result['fork'] = m['fork']
+            if m['fork']:
+                result['parent_repository'] = (m.get('parent') or {}).get('full_name')
+                result['forked_at'] = m['created_at']
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError) as exc:
             # Keep the old observation time alongside its error; never refresh stale timestamps.
             return repo.lower(), {**old, 'error': f'Metadata lookup failed: {type(exc).__name__}', 'attempted_at': now()}
