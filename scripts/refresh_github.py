@@ -13,6 +13,28 @@ from pathlib import Path
 from build import repository
 
 ROOT = Path(__file__).resolve().parents[1]
+FIRST_COMMIT_FIELDS = ('first_commit_at', 'first_commit_url', 'first_commit_sha', 'first_commit_checked_at', 'first_commit_verified_root')
+
+
+def oldest_root(commits):
+    """A timestamp-sorted API page can end with a backdated non-initial commit."""
+    roots = [commit for commit in commits if commit.get('parents') == []]
+    return min(roots, key=lambda commit: commit['commit']['committer']['date']) if roots else None
+
+
+def first_root(repo, oldest, commit_count):
+    candidate = oldest_root(oldest)
+    if candidate:
+        return candidate
+    # Search the oldest part of history for a real root, excluding non-root
+    # commits with bad clocks (e.g. Overleaf's 2007 child of a 2014 commit).
+    last_page = (commit_count + 99) // 100
+    for page in range(last_page, max(0, last_page - 3), -1):
+        tail, _ = fetch('repos/' + repo + '/commits?' + urllib.parse.urlencode({'per_page': 100, 'page': page}))
+        candidate = oldest_root(tail)
+        if candidate:
+            return candidate
+    raise ValueError('No root commit found in oldest history pages')
 
 
 def now():
@@ -58,19 +80,26 @@ def refresh():
                     else:
                         oldest = commits
                     if oldest:
-                        result['first_commit_at'] = oldest[-1]['commit']['committer']['date']
-                        result['first_commit_url'] = oldest[-1]['html_url']
-                        result['first_commit_sha'] = oldest[-1]['sha']
+                        first = first_root(repo, oldest, result['commits'])
+                        result['first_commit_at'] = first['commit']['committer']['date']
+                        result['first_commit_url'] = first['html_url']
+                        result['first_commit_sha'] = first['sha']
                         result['first_commit_checked_at'] = now()
+                        result['first_commit_verified_root'] = True
                 except (urllib.error.URLError, TimeoutError, ValueError, KeyError) as exc:
-                    for key in ('first_commit_at', 'first_commit_url', 'first_commit_sha', 'first_commit_checked_at'):
-                        if key in old:
-                            result[key] = old[key]
+                    if old.get('first_commit_verified_root'):
+                        for key in FIRST_COMMIT_FIELDS:
+                            if key in old:
+                                result[key] = old[key]
                     result['first_commit_error'] = f'First commit lookup failed: {type(exc).__name__}'
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError) as exc:
-            for key in ('last_commit_at', 'last_commit_url', 'commits', 'commit_checked_at', 'first_commit_at', 'first_commit_url', 'first_commit_sha', 'first_commit_checked_at'):
+            for key in ('last_commit_at', 'last_commit_url', 'commits', 'commit_checked_at'):
                 if key in old:
                     result[key] = old[key]
+            if old.get('first_commit_verified_root'):
+                for key in FIRST_COMMIT_FIELDS:
+                    if key in old:
+                        result[key] = old[key]
             result['commit_error'] = f'Commit lookup failed: {type(exc).__name__}'
         if branch := activity_branches.get(repo.lower()):
             result['activity_branch'] = branch

@@ -46,8 +46,9 @@ def validate(rows):
             assert repo_category not in repos, f'Duplicate repository/category: {repo}'
             repos.add(repo_category)
         if row['date']:
-            assert re.fullmatch(r'\d{4}-\d{2}-\d{2}', row['date']), row['date']
-            assert date.fromisoformat(row['date']) <= date.today(), row['date']
+            assert re.fullmatch(r'\d{4}(?:-\d{2}(?:-\d{2})?)?', row['date']), row['date']
+            padded_date = row['date'] + ('-01-01' if len(row['date']) == 4 else '-01' if len(row['date']) == 7 else '')
+            assert date.fromisoformat(padded_date) <= date.today(), row['date']
             assert row['evidence'] and row['date_basis'] != 'Date unverified', row['name']
 
 
@@ -67,6 +68,14 @@ def unmaintained(metadata, today=None):
     return date.fromisoformat(observed) <= cutoff
 
 
+def first_commit_date(metadata):
+    return metadata.get('first_commit_at', '')[:10] if metadata.get('first_commit_verified_root') else ''
+
+
+def latest_exact_date(dates):
+    return max(value for value in dates if re.fullmatch(r'\d{4}-\d{2}-\d{2}', value))
+
+
 def build():
     rows = list(csv.DictReader((ROOT / 'data.csv').open()))
     validate(rows)
@@ -76,10 +85,10 @@ def build():
     def entry_date(row):
         repo = repository(row['source'])
         metadata = snapshot['repositories'].get((repo or '').lower(), {})
-        return row['date'] or metadata.get('first_commit_at', '')[:10]
+        return row['date'] or first_commit_date(metadata)
 
     dated = sorted((r for r in rows if entry_date(r)), key=entry_date, reverse=True)
-    latest_date = entry_date(dated[0])
+    latest_date = latest_exact_date(entry_date(row) for row in dated)
     out = ROOT / 'dist'
     out.mkdir(parents=True, exist_ok=True)
     days = (date.today() - date.fromisoformat(latest_date)).days
@@ -102,8 +111,8 @@ def build():
             counts = f'<span class="repo-counts" title="GitHub snapshot: {esc(stamp)}{stale}">{link(r["source"] + "/stargazers", "★ " + stars, "Stars")} · {link(r["source"] + "/forks", "⑂ " + forks, "Forks")}{" *" if stale else ""}</span>'
         if r['date']:
             debut = f'{esc(r["date_basis"].lower())} <time datetime="{r["date"]}">{r["date"]}</time>'
-        elif m.get('first_commit_at'):
-            debut = link(m.get('first_commit_url'), 'first commit ' + m['first_commit_at'][:10], "Oldest commit in the default branch history. Fork history may include upstream commits; this is not a release date.")
+        elif first_commit_date(m):
+            debut = link(m.get('first_commit_url'), 'first commit ' + first_commit_date(m), "Oldest verified root commit found in the public default-branch history. Imported history may predate the editor; private or omitted commits are not covered. This is not a release date.")
         elif re.fullmatch(r'\d{4}(?:-\d{2})?', r.get('discussion_debut', '')):
             debut = f'<span title="Reported in Discussion #146; no exact launch date or public GitHub history available">reported {esc(r["discussion_debut"])}</span>'
         else:
@@ -139,7 +148,7 @@ def build():
 <main><section class="counter" aria-labelledby="counter-title"><h1 id="counter-title">It has been</h1><div id="days" data-last-release="{latest_date}">{days}</div><p id="sentence-end">days since the latest known new LaTeX editor</p></section>
 <div class="timeline-wrap" tabindex="0" role="region" aria-label="All LaTeX editors; scroll horizontally on small screens"><table class="timeline"><caption class="sr-only">All {len(rows)} LaTeX editors, newest dated entries first</caption><thead class="sr-only"><tr><th>Editor</th><th>Category / Maintenance</th><th>Date</th><th>Repository</th><th>Announcement and discussion</th><th>Stars / Forks</th></tr></thead><tbody>{''.join(timeline)}</tbody></table></div>
 </main><footer><p>{len(rows)} editors · {len(dated)} dated entries · <a href="{REPO}/issues/new?template=editor.yml">add or correct an editor</a></p>
-<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, first commit dates link to the oldest commit in the default branch history, which may include inherited upstream history in forks. Projects without public GitHub history may show a reported month/year from Discussion #146. The counter and chronological order use exact release/introduction dates, with first commits as the fallback. Reported month/year values and routine updates do not reset the counter. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Each editor has one category: Local takes precedence when a local editor is available, including on-device browser editors, even if server deployment is also supported. Selfhosted means a server-deployed web editor. SaaS means a vendor-operated hosted service, with free or subscription plans; a static browser-editor demo alone is not SaaS.</p><p>Red unmaintained labels replace the category when there is no commit on the default branch or a reviewed development branch in the last three calendar months. Unknown or failed lookups are not classified. This activity rule does not establish that a project has been abandoned.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
+<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, first commit dates link to a verified root commit in the public default-branch history. Backdated non-root commits are excluded; inherited upstream history may predate a fork, and private or omitted history is not covered. Projects without public GitHub history may show a reported month/year from Discussion #146. Reviewed dates take precedence for ordering. The counter uses exact days, with verified public root commits as the fallback when no reviewed date is known. Year/month-only dates and routine updates do not reset the counter; known years are displayed without inventing a month or day. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Each editor has one category: Local takes precedence when a local editor is available, including on-device browser editors, even if server deployment is also supported. Selfhosted means a server-deployed web editor. SaaS means a vendor-operated hosted service, with free or subscription plans; a static browser-editor demo alone is not SaaS.</p><p>Red unmaintained labels replace the category when there is no commit on the default branch or a reviewed development branch in the last three calendar months. Unknown or failed lookups are not classified. This activity rule does not establish that a project has been abandoned.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
 <p>Inspired by <a href="https://days-since-last-typst-editor.samake.se/">Days since last Typst editor</a> by <a href="https://github.com/sermuns">Samuel “sermuns” Åkesson</a>.</p></footer></body></html>'''
     (out / 'index.html').write_text(page)
     for name in ('style.css', 'script.js', 'favicon.svg', 'data.csv', 'github-snapshot.json', 'discussion-146.json', 'reddit-sources.json', 'research-audit.json'):

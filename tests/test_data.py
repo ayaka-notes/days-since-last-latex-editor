@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from build import validate, esc, unmaintained
+from build import validate, esc, unmaintained, first_commit_date, latest_exact_date
 
 
 class DataTests(unittest.TestCase):
@@ -31,6 +31,20 @@ class DataTests(unittest.TestCase):
         row = dict(self.rows[0], date='2026-10-01', date_basis='Date unverified')
         with self.assertRaises(AssertionError):
             validate([row])
+
+    def test_partial_dates_preserve_precision_without_resetting_counter(self):
+        for value in ('2011', '2011-12'):
+            row = dict(self.rows[0], date=value, date_basis='Founded')
+            validate([row])
+        self.assertEqual(latest_exact_date(['2026', '2026-11', '2026-10-30']), '2026-10-30')
+        with self.assertRaises((AssertionError, ValueError)):
+            validate([dict(self.rows[0], date='2011-13')])
+
+    def test_unverified_cached_commit_is_not_a_fallback_date(self):
+        metadata = {'first_commit_at': '2007-03-01T05:53:59Z'}
+        self.assertEqual(first_commit_date(metadata), '')
+        metadata.update(first_commit_at='2013-08-08T15:42:14Z', first_commit_verified_root=True)
+        self.assertEqual(first_commit_date(metadata), '2013-08-08')
 
     def test_inactivity_uses_calendar_months_and_known_commits(self):
         from datetime import date

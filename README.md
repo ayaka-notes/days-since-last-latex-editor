@@ -34,17 +34,17 @@ Edit `data.csv`; the site is rebuilt on every push to `main`.
 | `name`, `kind` | Display name and Desktop / Web / Self-hosted / Mobile / Extension |
 | `website`, `source`, `evidence` | Official site, repository, and supporting source |
 | `description`, `note` | Short description and qualifications |
-| `date`, `date_basis` | Exact UTC date and the initial release/public introduction it refers to |
+| `date`, `date_basis` | Reviewed date (YYYY, YYYY-MM or YYYY-MM-DD) and the event it refers to |
 | `discussion_debut`, `ai_integration` | Reported information imported from Discussion #146 |
 | `discussion_license`, `discussion_status` | Original comparison labels preserved for provenance, not asserted as current state |
 
-The counter and ordering use exact, reviewed introduction dates, falling back to
-the first commit when the introduction date is unknown. Repository creation,
+Reviewed dates take precedence for display and ordering. The counter uses exact days only,
+falling back to the first verified public root commit when no reviewed date is known. Repository creation,
 ordinary version updates and month-only dates do not reset it. Unknown dates remain
-visible. When no exact introduction is known, the list uses the first commit in the default branch history, linked to that commit.
+visible. When no reviewed date is known, the list uses the oldest verified root commit in the public default-branch history, linked to that commit. Timestamp-sorted API results are checked for parents; a backdated non-root commit is not treated as an initial commit. If no root can be verified, the fallback is omitted.
 Fork history can include upstream commits. Projects without public GitHub history
 may use a reported month/year from Discussion #146. Both are explicitly labelled.
-Reported month/year values never reset the counter. A first retained release is not proof that no earlier release existed.
+Year/month-only dates never reset the counter, and are displayed at their original precision. A first retained release is not proof that no earlier release existed. Public root commits do not establish the date of private or omitted history. Overleaf uses the officially documented founding year (2011); Overleaf CE uses the ShareLaTeX open-source announcement (2014-02-21).
 The two Folio projects and two Scribe projects remain separate. The LatexDo
 desktop repository is used for its desktop app; the original link is preserved
 in `discussion-146.json`.
