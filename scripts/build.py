@@ -89,7 +89,7 @@ def build():
         status = f'<span class="unmaintained" title="No default-branch commit in three months. Last commit: {esc(m.get("last_commit_at", "")[:10])}. This is an activity threshold, not a maintainer declaration.">unmaintained</span>' if unmaintained(m) else ''
         category_class = 'category saas' if r['category'] == 'SaaS' else 'category'
         category = f'<span class="{category_class}" title="{esc(r["category_note"])}">{esc(r["category"])}</span>'
-        status = category + status
+        status = status or category
         counts = '<span class="muted">—</span>'
         if repo:
             stars = f"{m['stars']:,}" if isinstance(m.get('stars'), int) else '—'
