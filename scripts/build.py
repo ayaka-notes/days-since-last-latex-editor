@@ -3,6 +3,7 @@
 import csv
 import calendar
 import html
+import hashlib
 import json
 import re
 from datetime import date
@@ -120,10 +121,12 @@ def build():
             sources.append(link(r['evidence'], 'source', r['note']))
         main_url = r['website'] or r['source'] or r['evidence']
         timeline.append(f'<tr><th scope="row"><i>{link(main_url, r["name"], r["description"])}</i></th><td class="status">{status}</td><td class="date">{debut}</td><td>{link(r["source"], "repository")}</td><td class="sources">{" ".join(sources)}</td><td>{counts}</td></tr>')
+    css_version = hashlib.sha256((ROOT / 'style.css').read_bytes()).hexdigest()[:12]
+    js_version = hashlib.sha256((ROOT / 'script.js').read_bytes()).hexdigest()[:12]
     page = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Days since last LaTeX editor</title><meta name="description" content="A growing list of LaTeX editors, with release dates, GitHub stars and original announcements.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css?v={css_version}"><script src="script.js?v={js_version}" defer></script></head>
 <body><header><a href="{REPO}">source code for this website</a><span>maintained by <a href="https://github.com/ayaka-notes">ayaka-notes</a></span></header>
 <main><section class="counter" aria-labelledby="counter-title"><h1 id="counter-title">It has been</h1><div id="days" data-last-release="{latest_date}">{days}</div><p id="sentence-end">days since the latest known new LaTeX editor</p></section>
 <div class="timeline-wrap" tabindex="0" role="region" aria-label="All LaTeX editors; scroll horizontally on small screens"><table class="timeline"><caption class="sr-only">All {len(rows)} LaTeX editors, newest dated entries first</caption><thead class="sr-only"><tr><th>Editor</th><th>Maintenance</th><th>Date</th><th>Repository</th><th>Announcement and discussion</th><th>Stars / Forks</th></tr></thead><tbody>{''.join(timeline)}</tbody></table></div>
