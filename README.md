@@ -69,7 +69,7 @@ those counts with an asterisk; hover for the original observation timestamp.
 ## Categories
 
 The existing status column shows one category per editor: `SaaS`,
-`Self-hosted web`, or `Local`. A local editor takes precedence over an
+`Selfhosted`, or `Local`. A local editor takes precedence over an
 optional server deployment. Browser editors that work on the user's device
 are local; a static demo alone is not SaaS. Merely running a server stack on a
 laptop does not establish a local editor. SaaS describes a vendor-operated
