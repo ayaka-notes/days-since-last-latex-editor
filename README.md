@@ -64,6 +64,20 @@ and on manual runs. The Actions token stays server-side. Stars and forks appear
 as plain numbers in one column. Failed lookups retain earlier values and mark
 those counts with an asterisk; hover for the original observation timestamp.
 
+## Categories
+
+The existing status column shows one category per editor: `SaaS`,
+`Self-hosted web`, or `Local editor`. A local editor takes precedence over an
+optional server deployment. Browser editors that work on the user's device
+are local; a static demo alone is not SaaS. Merely running a server stack on a
+laptop does not establish a local editor. SaaS describes a vendor-operated
+service and may have free or subscription plans.
+
+`category_evidence`, `category_note` and `category_checked_at` keep the source
+and rationale beside each reviewed classification in `data.csv`. A separate
+`unmaintained` line can appear in the same cell; it uses the normal font size
+and weight with red text only.
+
 ## Reddit and introduction research
 
 All 110 original entries were searched individually on 2026-11-04. The expanded

@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'https://github.com/ayaka-notes/days-since-last-latex-editor'
 KINDS = {'Desktop', 'Web', 'Self-hosted', 'Extension', 'Mobile'}
+CATEGORIES = {'SaaS', 'Self-hosted web', 'Local editor'}
 
 
 def esc(value):
@@ -32,7 +33,8 @@ def validate(rows):
         assert row['name'].strip() and row['name'].casefold() not in names, f"Duplicate name: {row['name']}"
         names.add(row['name'].casefold())
         assert row['kind'] in KINDS, row['kind']
-        for key in ('website', 'source', 'evidence'):
+        assert row.get('category') in CATEGORIES, row.get('category')
+        for key in ('website', 'source', 'evidence', 'category_evidence'):
             if row[key]:
                 p = urlparse(row[key])
                 assert p.scheme in ('http', 'https') and p.hostname and not p.username, row[key]
@@ -85,6 +87,8 @@ def build():
         repo = repository(r['source'])
         m = snapshot['repositories'].get((repo or '').lower(), {})
         status = f'<span class="unmaintained" title="No default-branch commit in three months. Last commit: {esc(m.get("last_commit_at", "")[:10])}. This is an activity threshold, not a maintainer declaration.">unmaintained</span>' if unmaintained(m) else ''
+        category = f'<span class="category" title="{esc(r["category_note"])}">{esc(r["category"])}</span>'
+        status = category + status
         counts = '<span class="muted">—</span>'
         if repo:
             stars = f"{m['stars']:,}" if isinstance(m.get('stars'), int) else '—'
@@ -129,9 +133,9 @@ def build():
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css?v={css_version}"><script src="script.js?v={js_version}" defer></script></head>
 <body><header><a href="{REPO}">source code for this website</a><span>maintained by <a href="https://github.com/ayaka-notes">ayaka-notes</a></span></header>
 <main><section class="counter" aria-labelledby="counter-title"><h1 id="counter-title">It has been</h1><div id="days" data-last-release="{latest_date}">{days}</div><p id="sentence-end">days since the latest known new LaTeX editor</p></section>
-<div class="timeline-wrap" tabindex="0" role="region" aria-label="All LaTeX editors; scroll horizontally on small screens"><table class="timeline"><caption class="sr-only">All {len(rows)} LaTeX editors, newest dated entries first</caption><thead class="sr-only"><tr><th>Editor</th><th>Maintenance</th><th>Date</th><th>Repository</th><th>Announcement and discussion</th><th>Stars / Forks</th></tr></thead><tbody>{''.join(timeline)}</tbody></table></div>
+<div class="timeline-wrap" tabindex="0" role="region" aria-label="All LaTeX editors; scroll horizontally on small screens"><table class="timeline"><caption class="sr-only">All {len(rows)} LaTeX editors, newest dated entries first</caption><thead class="sr-only"><tr><th>Editor</th><th>Category / Maintenance</th><th>Date</th><th>Repository</th><th>Announcement and discussion</th><th>Stars / Forks</th></tr></thead><tbody>{''.join(timeline)}</tbody></table></div>
 </main><footer><p>{len(rows)} editors · {len(dated)} dated entries · <a href="{REPO}/issues/new?template=editor.yml">add or correct an editor</a></p>
-<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, first commit dates link to the oldest commit in the default branch history, which may include inherited upstream history in forks. Projects without public GitHub history may show a reported month/year from Discussion #146. The counter and chronological order use exact release/introduction dates, with first commits as the fallback. Reported month/year values and routine updates do not reset the counter. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Red unmaintained labels mean no default-branch commit in the last three calendar months. Unknown or failed lookups are not classified. This activity rule does not establish that a project has been abandoned.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
+<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, first commit dates link to the oldest commit in the default branch history, which may include inherited upstream history in forks. Projects without public GitHub history may show a reported month/year from Discussion #146. The counter and chronological order use exact release/introduction dates, with first commits as the fallback. Reported month/year values and routine updates do not reset the counter. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Each editor has one category: Local editor takes precedence when a local editor is available, including on-device browser editors, even if server deployment is also supported. Self-hosted web means a server-deployed web editor. SaaS means a vendor-operated hosted service, with free or subscription plans; a static browser-editor demo alone is not SaaS.</p><p>Red unmaintained labels mean no default-branch commit in the last three calendar months. Unknown or failed lookups are not classified. This activity rule does not establish that a project has been abandoned.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
 <p>Inspired by <a href="https://days-since-last-typst-editor.samake.se/">Days since last Typst editor</a> by <a href="https://github.com/sermuns">Samuel “sermuns” Åkesson</a>.</p></footer></body></html>'''
     (out / 'index.html').write_text(page)
     for name in ('style.css', 'script.js', 'favicon.svg', 'data.csv', 'github-snapshot.json', 'discussion-146.json', 'reddit-sources.json', 'research-audit.json'):
