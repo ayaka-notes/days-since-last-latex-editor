@@ -1,0 +1,23 @@
+name: Add or correct an editor
+description: Suggest an editor or correct its date, links, or classification.
+title: '[Editor] '
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Editor name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Official website or repository
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and proposed correction
+      description: For a debut date, link to an initial release or public introduction. Repository creation alone is not sufficient.
+    validations:
+      required: true

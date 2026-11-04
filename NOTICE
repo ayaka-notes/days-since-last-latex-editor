@@ -1,0 +1,9 @@
+Visual inspiration: sermuns/days-since-last-typst-editor
+https://github.com/sermuns/days-since-last-typst-editor
+Copyright (C) 2026 Samuel Åkesson; upstream license: WTFPL version 2.
+The cyan palette and minimal counter/list treatment are retained in this
+independent Python/HTML implementation. The upstream site was built with Typst.
+
+Seed comparison data: ayaka-notes/ayakaleaf-pro Discussion #146.
+https://github.com/ayaka-notes/ayakaleaf-pro/discussions/146
+Imported 2026-11-04. Product names and marks belong to their respective owners.
