@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from build import validate, esc
+from build import validate, esc, unmaintained
 
 
 class DataTests(unittest.TestCase):
@@ -31,6 +31,15 @@ class DataTests(unittest.TestCase):
         row = dict(self.rows[0], date='2026-10-01', date_basis='Date unverified')
         with self.assertRaises(AssertionError):
             validate([row])
+
+    def test_inactivity_uses_calendar_months_and_known_commits(self):
+        from datetime import date
+        today = date(2026, 11, 4)
+        self.assertTrue(unmaintained({'last_commit_at': '2026-08-04T10:00:00Z'}, today))
+        self.assertFalse(unmaintained({'last_commit_at': '2026-08-05T10:00:00Z'}, today))
+        self.assertFalse(unmaintained({}, today))
+        self.assertFalse(unmaintained({'last_commit_at': '2020-01-01T00:00:00Z', 'error': 'lookup failed'}, today))
+        self.assertTrue(unmaintained({'last_commit_at': '2024-02-29T00:00:00Z'}, date(2024, 5, 31)))
 
     def test_unsafe_links_are_rejected(self):
         row = dict(self.rows[0], website='javascript:alert(1)')

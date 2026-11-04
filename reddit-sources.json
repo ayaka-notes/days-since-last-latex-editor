@@ -2,15 +2,6 @@
   "checked_at": "2026-11-04",
   "method": "Individual editor-name searches across Reddit, with identity checks against the catalog. Indexed means retrievable public search-index text, not a guarantee of current live availability. No deleted identities reconstructed.",
   "editors": {
-    "Ayakaleaf Pro": [
-      {
-        "url": "https://www.reddit.com/r/selfhosted/comments/1x8ua83/removed/",
-        "status": "removed",
-        "relation": "discussion",
-        "checked_at": "2026-11-04",
-        "note": "Post body is removed. Surviving comments explicitly name Ayakaleaf Pro. Removal reason and account status are not inferred."
-      }
-    ],
     "Typeward": [
       {
         "url": "https://www.reddit.com/r/LaTeX/comments/1vdsleq/removed/",

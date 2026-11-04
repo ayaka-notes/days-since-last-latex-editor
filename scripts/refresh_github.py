@@ -50,8 +50,23 @@ def refresh():
                 last = re.search(r'<([^>]+)>; rel="last"', headers.get('Link', ''))
                 result['commits'] = int(urllib.parse.parse_qs(urllib.parse.urlparse(last.group(1)).query)['page'][0]) if last else len(commits)
                 result['commit_checked_at'] = now()
+                try:
+                    if last:
+                        oldest, _ = fetch(last.group(1).removeprefix('https://api.github.com/'))
+                    else:
+                        oldest = commits
+                    if oldest:
+                        result['first_commit_at'] = oldest[-1]['commit']['committer']['date']
+                        result['first_commit_url'] = oldest[-1]['html_url']
+                        result['first_commit_sha'] = oldest[-1]['sha']
+                        result['first_commit_checked_at'] = now()
+                except (urllib.error.URLError, TimeoutError, ValueError, KeyError) as exc:
+                    for key in ('first_commit_at', 'first_commit_url', 'first_commit_sha', 'first_commit_checked_at'):
+                        if key in old:
+                            result[key] = old[key]
+                    result['first_commit_error'] = f'First commit lookup failed: {type(exc).__name__}'
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError) as exc:
-            for key in ('last_commit_at', 'last_commit_url', 'commits', 'commit_checked_at'):
+            for key in ('last_commit_at', 'last_commit_url', 'commits', 'commit_checked_at', 'first_commit_at', 'first_commit_url', 'first_commit_sha', 'first_commit_checked_at'):
                 if key in old:
                     result[key] = old[key]
             result['commit_error'] = f'Commit lookup failed: {type(exc).__name__}'

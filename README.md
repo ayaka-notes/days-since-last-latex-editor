@@ -19,8 +19,10 @@ python -m http.server 8000 --directory dist
 
 Open `http://localhost:8000`. All directory content is generated as static HTML;
 JavaScript only updates the counter. The page has one compact chronological list,
-with stars and forks together in one additional column. No AI labels or extended
-comparison table are displayed. All paths are relative
+with stars and forks together in one additional column. A status column after the name marks repositories with no default-branch commit
+in three calendar months as red `unmaintained`. Unknown or failed commit lookups
+are not classified. This is an automatic activity rule, not a declaration of
+abandonment. No AI labels or extended comparison table are displayed. All paths are relative
 so GitHub project Pages work without a custom domain.
 
 ## Update data
@@ -36,17 +38,19 @@ Edit `data.csv`; the site is rebuilt on every push to `main`.
 | `discussion_debut`, `ai_integration` | Reported information imported from Discussion #146 |
 | `discussion_license`, `discussion_status` | Original comparison labels preserved for provenance, not asserted as current state |
 
-Only exact, reviewed introduction dates reset the counter. Repository creation,
-ordinary version updates, and month-only dates do not. Unknown dates remain
-visible. When no exact introduction is known, the list shows a reported month/year
-from Discussion #146, or a GitHub repository creation date, with an explicit label.
-These fallback dates never reset the counter. A first retained release is not proof that no earlier release existed.
+The counter and ordering use exact, reviewed introduction dates, falling back to
+the first commit when the introduction date is unknown. Repository creation,
+ordinary version updates and month-only dates do not reset it. Unknown dates remain
+visible. When no exact introduction is known, the list uses the first commit in the default branch history, linked to that commit.
+Fork history can include upstream commits. Projects without public GitHub history
+may use a reported month/year from Discussion #146. Both are explicitly labelled.
+Reported month/year values never reset the counter. A first retained release is not proof that no earlier release existed.
 The two Folio projects and two Scribe projects remain separate. The LatexDo
 desktop repository is used for its desktop app; the original link is preserved
 in `discussion-146.json`.
 
 `github-snapshot.json` records stars, forks, detected SPDX license, default-branch
-commit date, commit count (when available), and per-repository retrieval times.
+commit dates (oldest and latest), commit count (when available), and per-repository retrieval times.
 Commit count covers the default branch's reachable history, including inherited
 fork history; it is not a measure of original work. Refresh with:
 
@@ -63,15 +67,14 @@ those counts with an asterisk; hover for the original observation timestamp.
 ## Reddit and introduction research
 
 All 110 original entries were searched individually on 2026-11-04. The expanded
-catalog has 38 dated initial releases/public introductions and 38 entries with
+catalog has 38 dated initial releases/public introductions and 37 entries with
 reviewed Reddit links. `reddit-sources.json` keeps the minimal source records;
 `research-audit.json` records the individual queries and retained outcomes.
 
 A search result is not enough to associate namesakes. Matched posts must identify
 the same project, repository or official domain. Ordinary user discussions and
 removed posts do not establish initial release dates. Indexed post text is not
-a guarantee that the live post remains available. The removed Ayakaleaf Pro and
-Typeward threads are linked because surviving comments explicitly identify them;
+a guarantee that the live post remains available. The removed Typeward thread is linked because surviving comments explicitly identify it;
 no removal reason or deleted account identity is inferred. The supplied LocTex
 link is retained as unverified because its body and date were unavailable.
 
