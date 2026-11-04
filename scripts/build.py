@@ -13,7 +13,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'https://github.com/ayaka-notes/days-since-last-latex-editor'
 KINDS = {'Desktop', 'Web', 'Self-hosted', 'Extension', 'Mobile'}
-CATEGORIES = {'SaaS', 'Self-hosted web', 'Local editor'}
+CATEGORIES = {'SaaS', 'Self-hosted web', 'Local'}
 
 
 def esc(value):
@@ -41,8 +41,10 @@ def validate(rows):
         assert row['source'] or row['website'] or row['evidence'], row['name']
         repo = repository(row['source'])
         if repo:
-            assert repo.casefold() not in repos, f'Duplicate repository: {repo}'
-            repos.add(repo.casefold())
+            # Hosted and self-hosted editions can share the same upstream repository.
+            repo_category = (repo.casefold(), row['category'])
+            assert repo_category not in repos, f'Duplicate repository/category: {repo}'
+            repos.add(repo_category)
         if row['date']:
             assert re.fullmatch(r'\d{4}-\d{2}-\d{2}', row['date']), row['date']
             assert date.fromisoformat(row['date']) <= date.today(), row['date']
@@ -59,8 +61,8 @@ def unmaintained(metadata, today=None):
     year, month_zero = divmod(month_index, 12)
     month = month_zero + 1
     cutoff = date(year, month, min(today.day, calendar.monthrange(year, month)[1]))
-    observed = metadata.get('last_commit_at', '')[:10]
-    if not observed or metadata.get('error') or metadata.get('commit_error'):
+    observed = max(metadata.get('last_commit_at', '')[:10], metadata.get('activity_commit_at', '')[:10])
+    if not observed or metadata.get('error') or metadata.get('commit_error') or metadata.get('activity_error'):
         return False
     return date.fromisoformat(observed) <= cutoff
 
@@ -86,7 +88,8 @@ def build():
     for r in ordered:
         repo = repository(r['source'])
         m = snapshot['repositories'].get((repo or '').lower(), {})
-        status = f'<span class="unmaintained" title="No default-branch commit in three months. Last commit: {esc(m.get("last_commit_at", "")[:10])}. This is an activity threshold, not a maintainer declaration.">unmaintained</span>' if unmaintained(m) else ''
+        activity_date = max(m.get('last_commit_at', '')[:10], m.get('activity_commit_at', '')[:10])
+        status = f'<span class="unmaintained" title="No commit in the checked branches in three months. Last commit: {esc(activity_date)}. This is an activity threshold, not a maintainer declaration.">unmaintained</span>' if unmaintained(m) else ''
         category_class = 'category saas' if r['category'] == 'SaaS' else 'category'
         category = f'<span class="{category_class}" title="{esc(r["category_note"])}">{esc(r["category"])}</span>'
         status = status or category
@@ -136,7 +139,7 @@ def build():
 <main><section class="counter" aria-labelledby="counter-title"><h1 id="counter-title">It has been</h1><div id="days" data-last-release="{latest_date}">{days}</div><p id="sentence-end">days since the latest known new LaTeX editor</p></section>
 <div class="timeline-wrap" tabindex="0" role="region" aria-label="All LaTeX editors; scroll horizontally on small screens"><table class="timeline"><caption class="sr-only">All {len(rows)} LaTeX editors, newest dated entries first</caption><thead class="sr-only"><tr><th>Editor</th><th>Category / Maintenance</th><th>Date</th><th>Repository</th><th>Announcement and discussion</th><th>Stars / Forks</th></tr></thead><tbody>{''.join(timeline)}</tbody></table></div>
 </main><footer><p>{len(rows)} editors · {len(dated)} dated entries · <a href="{REPO}/issues/new?template=editor.yml">add or correct an editor</a></p>
-<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, first commit dates link to the oldest commit in the default branch history, which may include inherited upstream history in forks. Projects without public GitHub history may show a reported month/year from Discussion #146. The counter and chronological order use exact release/introduction dates, with first commits as the fallback. Reported month/year values and routine updates do not reset the counter. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Each editor has one category: Local editor takes precedence when a local editor is available, including on-device browser editors, even if server deployment is also supported. Self-hosted web means a server-deployed web editor. SaaS means a vendor-operated hosted service, with free or subscription plans; a static browser-editor demo alone is not SaaS.</p><p>Red unmaintained labels mean no default-branch commit in the last three calendar months. Unknown or failed lookups are not classified. This activity rule does not establish that a project has been abandoned.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
+<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, first commit dates link to the oldest commit in the default branch history, which may include inherited upstream history in forks. Projects without public GitHub history may show a reported month/year from Discussion #146. The counter and chronological order use exact release/introduction dates, with first commits as the fallback. Reported month/year values and routine updates do not reset the counter. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Each editor has one category: Local takes precedence when a local editor is available, including on-device browser editors, even if server deployment is also supported. Self-hosted web means a server-deployed web editor. SaaS means a vendor-operated hosted service, with free or subscription plans; a static browser-editor demo alone is not SaaS.</p><p>Red unmaintained labels replace the category when there is no commit on the default branch or a reviewed development branch in the last three calendar months. Unknown or failed lookups are not classified. This activity rule does not establish that a project has been abandoned.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
 <p>Inspired by <a href="https://days-since-last-typst-editor.samake.se/">Days since last Typst editor</a> by <a href="https://github.com/sermuns">Samuel “sermuns” Åkesson</a>.</p></footer></body></html>'''
     (out / 'index.html').write_text(page)
     for name in ('style.css', 'script.js', 'favicon.svg', 'data.csv', 'github-snapshot.json', 'discussion-146.json', 'reddit-sources.json', 'research-audit.json'):

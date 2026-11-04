@@ -3,7 +3,7 @@
 A small counter and a growing directory of LaTeX editors, inspired by
 [Days since last Typst editor](https://days-since-last-typst-editor.samake.se/).
 
-The catalog contains 113 entries, including every project linked in
+The catalog contains 114 entries, including every project linked in
 [Ayakaleaf Pro Discussion #146](https://github.com/ayaka-notes/ayakaleaf-pro/discussions/146),
 LocTex from the supplied Reddit introduction, Overleaf Workshop discovered through Trendshift, and traditional editors such as
 TeXstudio, Texmaker, TeXworks, TeXShop, Kile and LyX.
@@ -19,7 +19,7 @@ python -m http.server 8000 --directory dist
 
 Open `http://localhost:8000`. All directory content is generated as static HTML;
 JavaScript only updates the counter. The page has one compact chronological list,
-with stars and forks together in one additional column. A status column after the name marks repositories with no default-branch commit
+with stars and forks together in one additional column. A status column after the name marks repositories with no commit on the default or explicitly reviewed development branch
 in three calendar months as red `unmaintained`. Unknown or failed commit lookups
 are not classified. This is an automatic activity rule, not a declaration of
 abandonment. No AI labels or extended comparison table are displayed. All paths are relative
@@ -51,6 +51,8 @@ in `discussion-146.json`.
 
 `github-snapshot.json` records stars, forks, detected SPDX license, default-branch
 commit dates (oldest and latest), commit count (when available), and per-repository retrieval times.
+`activity_branch` in `data.csv` optionally names a reviewed development branch for maintenance checks (for example, BlaBlaTex uses `develop`). This never changes the first-commit fallback or release date. The branch is refreshed daily; a failed lookup does not mark the project unmaintained. Hosted and self-hosted editions may share an upstream repository, as with Overleaf and Overleaf CE.
+
 Commit count covers the default branch's reachable history, including inherited
 fork history; it is not a measure of original work. Refresh with:
 
@@ -67,7 +69,7 @@ those counts with an asterisk; hover for the original observation timestamp.
 ## Categories
 
 The existing status column shows one category per editor: `SaaS`,
-`Self-hosted web`, or `Local editor`. A local editor takes precedence over an
+`Self-hosted web`, or `Local`. A local editor takes precedence over an
 optional server deployment. Browser editors that work on the user's device
 are local; a static demo alone is not SaaS. Merely running a server stack on a
 laptop does not establish a local editor. SaaS describes a vendor-operated

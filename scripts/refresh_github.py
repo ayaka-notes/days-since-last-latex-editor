@@ -32,7 +32,9 @@ def fetch(path):
 def refresh():
     target = ROOT / 'github-snapshot.json'
     previous = json.loads(target.read_text()) if target.exists() else {'repositories': {}}
-    repos = sorted({repo for row in csv.DictReader((ROOT / 'data.csv').open()) if (repo := repository(row['source']))})
+    rows = list(csv.DictReader((ROOT / 'data.csv').open()))
+    repos = sorted({repo for row in rows if (repo := repository(row['source']))})
+    activity_branches = {repository(row['source']).lower(): row['activity_branch'] for row in rows if row.get('activity_branch') and repository(row['source'])}
 
     def one(repo):
         old = previous['repositories'].get(repo.lower(), {})
@@ -70,6 +72,17 @@ def refresh():
                 if key in old:
                     result[key] = old[key]
             result['commit_error'] = f'Commit lookup failed: {type(exc).__name__}'
+        if branch := activity_branches.get(repo.lower()):
+            result['activity_branch'] = branch
+            try:
+                activity, _ = fetch('repos/' + repo + '/commits?' + urllib.parse.urlencode({'per_page': 1, 'sha': branch}))
+                if not activity:
+                    raise ValueError('Empty activity branch')
+                result['activity_commit_at'] = activity[0]['commit']['committer']['date']
+                result['activity_commit_url'] = activity[0]['html_url']
+                result['activity_checked_at'] = now()
+            except (urllib.error.URLError, TimeoutError, ValueError, KeyError) as exc:
+                result['activity_error'] = f'Activity branch lookup failed: {type(exc).__name__}'
         return repo.lower(), result
 
     with ThreadPoolExecutor(max_workers=5) as pool:

@@ -47,6 +47,14 @@ class DataTests(unittest.TestCase):
             validate([row])
         self.assertEqual(esc('<script>"'), '&lt;script&gt;&quot;')
 
+    def test_development_branch_activity_prevents_false_inactivity(self):
+        from datetime import date
+        metadata = {'last_commit_at': '2026-06-04T09:22:49Z', 'activity_commit_at': '2026-11-04T12:30:24Z'}
+        self.assertFalse(unmaintained(metadata, date(2026, 11, 4)))
+        self.assertTrue(unmaintained(metadata, date(2027, 2, 4)))
+        metadata['activity_error'] = 'lookup failed'
+        self.assertFalse(unmaintained(metadata, date(2027, 2, 4)))
+
 
 if __name__ == '__main__':
     unittest.main()

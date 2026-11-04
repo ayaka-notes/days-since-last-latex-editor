@@ -479,7 +479,11 @@
       "last_commit_at": "2026-06-04T09:22:49Z",
       "last_commit_url": "https://github.com/Vovaprogrammer/BlaBlaTex/commit/01bbfd75d682bc4cd96dc5ec28ceca77adb0de11",
       "commits": 51,
-      "commit_checked_at": "2026-11-04T11:51:14+00:00"
+      "commit_checked_at": "2026-11-04T11:51:14+00:00",
+      "activity_branch": "develop",
+      "activity_commit_at": "2026-11-04T12:30:24Z",
+      "activity_commit_url": "https://github.com/Vovaprogrammer/BlaBlaTex/commit/08c8eb087a258f36e9a9089c1d2dc1a96d8507be",
+      "activity_checked_at": "2026-11-04T12:37:04+00:00"
     },
     "wahahayes/maleficium": {
       "name": "WahahaYes/maleficium",
