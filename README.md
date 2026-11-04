@@ -71,7 +71,8 @@ The existing status column shows one category per editor: `SaaS`,
 optional server deployment. Browser editors that work on the user's device
 are local; a static demo alone is not SaaS. Merely running a server stack on a
 laptop does not establish a local editor. SaaS describes a vendor-operated
-service and may have free or subscription plans.
+service and may have free or subscription plans. The SaaS label is red, using
+the same font size and weight as the surrounding text.
 
 `category_evidence`, `category_note` and `category_checked_at` keep the source
 and rationale beside each reviewed classification in `data.csv`. A separate

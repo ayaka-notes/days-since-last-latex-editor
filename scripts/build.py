@@ -87,7 +87,8 @@ def build():
         repo = repository(r['source'])
         m = snapshot['repositories'].get((repo or '').lower(), {})
         status = f'<span class="unmaintained" title="No default-branch commit in three months. Last commit: {esc(m.get("last_commit_at", "")[:10])}. This is an activity threshold, not a maintainer declaration.">unmaintained</span>' if unmaintained(m) else ''
-        category = f'<span class="category" title="{esc(r["category_note"])}">{esc(r["category"])}</span>'
+        category_class = 'category saas' if r['category'] == 'SaaS' else 'category'
+        category = f'<span class="{category_class}" title="{esc(r["category_note"])}">{esc(r["category"])}</span>'
         status = category + status
         counts = '<span class="muted">—</span>'
         if repo:
