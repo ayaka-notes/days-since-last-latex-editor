@@ -3,9 +3,9 @@
 A small counter and a growing directory of LaTeX editors, inspired by
 [Days since last Typst editor](https://days-since-last-typst-editor.samake.se/).
 
-The first catalog contains 110 entries, including every project linked in
+The catalog contains 113 entries, including every project linked in
 [Ayakaleaf Pro Discussion #146](https://github.com/ayaka-notes/ayakaleaf-pro/discussions/146),
-LocTex from the supplied Reddit introduction, and traditional editors such as
+LocTex from the supplied Reddit introduction, Overleaf Workshop discovered through Trendshift, and traditional editors such as
 TeXstudio, Texmaker, TeXworks, TeXShop, Kile and LyX.
 
 ## Run locally
@@ -18,7 +18,9 @@ python -m http.server 8000 --directory dist
 ```
 
 Open `http://localhost:8000`. All directory content is generated as static HTML;
-JavaScript only updates the counter, filters and sorts. All paths are relative
+JavaScript only updates the counter. The page has one compact chronological list,
+with stars and forks together in one additional column. No AI labels or extended
+comparison table are displayed. All paths are relative
 so GitHub project Pages work without a custom domain.
 
 ## Update data
@@ -52,13 +54,30 @@ python scripts/build.py
 ```
 
 The workflow refreshes metadata daily at 02:17 UTC (10:17 Asia/Taipei), on pushes,
-and on manual runs. The Actions token stays server-side. Shields.io star images
-also refresh independently, with upstream caching; snapshot sorting and exact
-text values can therefore differ from badges. No browser-side API token is used.
-Failed API lookups retain old values with their original timestamp and an error.
-The page distinguishes archival status and observed commit dates from subjective
-“active/stalled” judgments. AI labels imported from the comparison are reported,
-not a feature audit.
+and on manual runs. The Actions token stays server-side. Stars and forks appear
+as plain numbers in one column. Failed lookups retain earlier values and mark
+those counts with an asterisk; hover for the original observation timestamp.
+
+## Reddit and introduction research
+
+All 110 original entries were searched individually on 2026-11-04. The expanded
+catalog has 38 dated initial releases/public introductions and 38 entries with
+reviewed Reddit links. `reddit-sources.json` keeps the minimal source records;
+`research-audit.json` records the individual queries and retained outcomes.
+
+A search result is not enough to associate namesakes. Matched posts must identify
+the same project, repository or official domain. Ordinary user discussions and
+removed posts do not establish initial release dates. Indexed post text is not
+a guarantee that the live post remains available. The removed Ayakaleaf Pro and
+Typeward threads are linked because surviving comments explicitly identify them;
+no removal reason or deleted account identity is inferred. The supplied LocTex
+link is retained as unverified because its body and date were unavailable.
+
+Initial-release records were checked against official GitHub releases. Routine
+updates, engine-only assets and ambiguous earliest retained versions are not
+promoted to initial releases. Trendshift is a discovery source, not a date or
+star-count authority. The imported Discussion #146 comparison fields remain in
+the source data for provenance, but are not shown on the page.
 
 ## Deploy to GitHub Pages
 

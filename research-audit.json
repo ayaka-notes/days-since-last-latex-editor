@@ -1,0 +1,571 @@
+{
+  "checked_at": "2026-11-04",
+  "scope": "One individual Reddit query per original catalog entry, followed by identity review. Search absence is not proof no post exists.",
+  "editors": [
+    {
+      "name": "Corollary",
+      "query": "\"Corollary\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LaTeX Pro",
+      "query": "\"LaTeX Pro\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Folio (vicgotarkiravas)",
+      "query": "\"Folio\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Oleafly",
+      "query": "\"Oleafly\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Ayakaleaf Pro",
+      "query": "\"Ayakaleaf Pro\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Prism",
+      "query": "\"Prism\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Texpile",
+      "query": "\"Texpile\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "AcaTeX",
+      "query": "\"AcaTeX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "AUCTeX",
+      "query": "\"AUCTeX\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Blanc",
+      "query": "\"Blanc\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Claude Prism",
+      "query": "\"Claude Prism\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "CoCalc",
+      "query": "\"CoCalc\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Edico",
+      "query": "\"Edico\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Eukolia",
+      "query": "\"Eukolia\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Euler",
+      "query": "\"Euler\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Gummi",
+      "query": "\"Gummi\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Infinitex",
+      "query": "\"Infinitex\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "JaxEdit",
+      "query": "\"JaxEdit\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Kile",
+      "query": "\"Kile\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "LaTeX Studio",
+      "query": "\"LaTeX Studio\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LaTeX Workshop",
+      "query": "\"LaTeX Workshop\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "LaTeX-Editor (dichi123456)",
+      "query": "\"LaTeX-Editor\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LatexDo",
+      "query": "\"LatexDo\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LaTeXTools",
+      "query": "\"LaTeXTools\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "LetX",
+      "query": "\"LetX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LibrePaper",
+      "query": "\"LibrePaper\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LMMS Lab Writer",
+      "query": "\"LMMS Lab Writer\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LocalLeaf",
+      "query": "\"LocalLeaf\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LocTex",
+      "query": "\"LocTex\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "LyX",
+      "query": "\"LyX\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "NeoLeaf",
+      "query": "\"NeoLeaf\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Octree",
+      "query": "\"Octree\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Open LaTeX Studio",
+      "query": "\"Open LaTeX Studio\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "OpenLeaf (vicky157)",
+      "query": "\"OpenLeaf\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Overleaf",
+      "query": "\"Overleaf\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Papeeria",
+      "query": "\"Papeeria\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Quire",
+      "query": "\"Quire\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Refract",
+      "query": "\"Refract\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "SapienAI",
+      "query": "\"SapienAI\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Scribe IDE",
+      "query": "\"Scribe IDE\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Setzer",
+      "query": "\"Setzer\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "SwiftLaTeX",
+      "query": "\"SwiftLaTeX\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeX64",
+      "query": "\"TeX64\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "TeXbrain",
+      "query": "\"TeXbrain\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeXdesk",
+      "query": "\"TeXdesk\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Texifier",
+      "query": "\"Texifier\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeXiFy IDEA",
+      "query": "\"TeXiFy IDEA\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TexLite",
+      "query": "\"TexLite\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "texlode",
+      "query": "\"texlode\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeXlyre",
+      "query": "\"TeXlyre\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Texmaker",
+      "query": "\"Texmaker\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeXnicCenter",
+      "query": "\"TeXnicCenter\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeXora",
+      "query": "\"TeXora\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "TeXoria",
+      "query": "\"TeXoria\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "TeXPage",
+      "query": "\"TeXPage\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeXShop",
+      "query": "\"TeXShop\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeXstudio",
+      "query": "\"TeXstudio\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "texwerk",
+      "query": "\"texwerk\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "TeXworks",
+      "query": "\"TeXworks\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "Typeward",
+      "query": "\"Typeward\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "VimTeX",
+      "query": "\"VimTeX\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "VisualLaTeX",
+      "query": "\"VisualLaTeX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "WebLaTeX",
+      "query": "\"WebLaTeX\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "WinEdt",
+      "query": "\"WinEdt\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "WinShell",
+      "query": "\"WinShell\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "overleaf-cep",
+      "query": "\"overleaf-cep\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Aldine",
+      "query": "\"Aldine\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "papilot",
+      "query": "\"papilot\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LaTeX in AI Sidebar",
+      "query": "\"LaTeX in AI Sidebar\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "TeXslate",
+      "query": "\"TeXslate\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "paper-pal",
+      "query": "\"paper-pal\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "OpalaTex",
+      "query": "\"OpalaTex\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "OverBranch",
+      "query": "\"OverBranch\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "maleficium",
+      "query": "\"maleficium\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "GlyphTeX",
+      "query": "\"GlyphTeX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "NextTex",
+      "query": "\"NextTex\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Folio (Meinianda-L)",
+      "query": "\"Folio\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "texc",
+      "query": "\"texc\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "calmpage",
+      "query": "\"calmpage\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "textex",
+      "query": "\"textex\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Editex",
+      "query": "\"Editex\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "textra",
+      "query": "\"textra\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "texlume",
+      "query": "\"texlume\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "helloSayanDeb latex-editor",
+      "query": "\"helloSayanDeb latex-editor\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "ColTex",
+      "query": "\"ColTex\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Manang",
+      "query": "\"Manang\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "texit",
+      "query": "\"texit\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Bibby AI",
+      "query": "\"Bibby AI\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "PairTeX",
+      "query": "\"PairTeX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "MagicTeX",
+      "query": "\"MagicTeX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Openleaf",
+      "query": "\"Openleaf\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "local-leaf",
+      "query": "\"local-leaf\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Paperdesk",
+      "query": "\"Paperdesk\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LaTeX Lab",
+      "query": "\"LaTeX Lab\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Prismer.AI",
+      "query": "\"Prismer.AI\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "OpenPrism",
+      "query": "\"OpenPrism\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "assistant-ui open-prism",
+      "query": "\"assistant-ui open-prism\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Vishi open-prism",
+      "query": "\"Vishi open-prism\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Scribe (sunnyallana)",
+      "query": "\"Scribe\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "BlaBlaTex",
+      "query": "\"BlaBlaTex\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "scholia",
+      "query": "\"scholia\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "PaperForge",
+      "query": "\"PaperForge\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "TypeTeX",
+      "query": "\"TypeTeX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Murfy",
+      "query": "\"Murfy\" latex editor site:reddit.com",
+      "outcome": "linked sources"
+    },
+    {
+      "name": "TeXPal",
+      "query": "\"TeXPal\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "TexMate",
+      "query": "\"TexMate\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "EasyLaTeX",
+      "query": "\"EasyLaTeX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LoongTeX",
+      "query": "\"LoongTeX\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Typevia",
+      "query": "\"Typevia\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "Frism",
+      "query": "\"Frism\" latex editor site:reddit.com",
+      "outcome": "no confirmed match retained"
+    }
+  ],
+  "additional_sources": [
+    {
+      "name": "Overleaf Workshop",
+      "source": "https://trendshift.io/repositories/179493",
+      "verification": "Official GitHub README"
+    },
+    {
+      "name": "Lyra Editor",
+      "source": "https://www.reddit.com/r/LaTeX/comments/1pixsz3/i_built_a_visual_latex_editor_because_i_hated/"
+    },
+    {
+      "name": "Gitpen",
+      "source": "https://www.reddit.com/r/LaTeX/comments/1m809pt/just_launched_gitpen_a_lightweight_online_latex/"
+    }
+  ]
+}

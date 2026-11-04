@@ -1,0 +1,348 @@
+{
+  "checked_at": "2026-11-04",
+  "method": "Individual editor-name searches across Reddit, with identity checks against the catalog. Indexed means retrievable public search-index text, not a guarantee of current live availability. No deleted identities reconstructed.",
+  "editors": {
+    "Ayakaleaf Pro": [
+      {
+        "url": "https://www.reddit.com/r/selfhosted/comments/1x8ua83/removed/",
+        "status": "removed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Post body is removed. Surviving comments explicitly name Ayakaleaf Pro. Removal reason and account status are not inferred."
+      }
+    ],
+    "Typeward": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1vdsleq/removed/",
+        "status": "removed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Post body is removed. Surviving comments name Typeward and link its texlive-wasm repository. No debut date inferred."
+      }
+    ],
+    "LocTex": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1xnkvo2/i_built_loctex_an_offlinefirst_latex_studio_with/",
+        "status": "unverified",
+        "relation": "supplied introduction",
+        "checked_at": "2026-11-04",
+        "note": "User-supplied Reddit share link resolves here. Post body, date and account status could not be retrieved; not labelled deleted."
+      }
+    ],
+    "LaTeX Pro": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1x703pf/what_do_you_use_to_write_latex/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Folio (vicgotarkiravas)": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1x5uj8j/folio_a_native_desktop_latex_editor_with_builtin/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Texpile": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1ptcuae/i_built_a_visual_latex_editor_with_collaboration/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Claude Prism": [
+      {
+        "url": "https://www.reddit.com/r/ClaudeAI/comments/1ru9ote/professional_academic_documents_with_zero_effort/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "SwiftLaTeX": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/e6a3b6",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXbrain": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1s75bcf/i_built_a_free_overleaf_alternative_that_runs/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TexLite": [
+      {
+        "url": "https://www.reddit.com/r/opensourcealternative/comments/1w1766z/texlite_lightweight_selfhosted_collaborative/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXlyre": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1lzmvus/texlyre_free_localfirst_latex_editor_alternative/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXslate": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1usvvcr/texslate_opensource_latex_editor_for_android_that/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "WebLaTeX": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/yt8a2a",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "AUCTeX": [
+      {
+        "url": "https://www.reddit.com/r/emacs/comments/jvogdw",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "CoCalc": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1lka6x4/best_online_latex_editor_for_muy_needs_overleaf/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Gummi": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/f699vr",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Kile": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/s1ch1a",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "LaTeX Workshop": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/15sup7o/texstudio_vs_latex_workshop_on_vscode/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "LaTeXTools": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1tuivrl/i_need_help_with_the_sublime_textlatextools/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "LyX": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1mdbmzs/lyx_still_relevant/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Overleaf": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1vxxz0g/what_are_the_best_alternatives_to_overleaf_for/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Papeeria": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1lka6x4/best_online_latex_editor_for_muy_needs_overleaf/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Setzer": [
+      {
+        "url": "https://www.reddit.com/r/gnome/comments/1123umn",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "SapienAI": [
+      {
+        "url": "https://www.reddit.com/r/selfhosted/comments/1mfb8s8",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Texifier": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/132q7bb/feedback_or_alternatives_to_texifier_as_editor/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXiFy IDEA": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1wkc7wb/learning_texify/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Texmaker": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1gt4aka",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXnicCenter": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/ct0v0g",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXPage": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1rbv3p1/there_are_tons_of_new_online_latex_editors_and_i/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXShop": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/18ebloa/recommendation_on_latex_editors/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXstudio": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/15sup7o/texstudio_vs_latex_workshop_on_vscode/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "texlode": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1wxbk8m/update_on_texlode_realtime_wysiwyg_latex_editor/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "TeXworks": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1mklhw7/what_latex_editors_do_you_use/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "VimTeX": [
+      {
+        "url": "https://www.reddit.com/r/neovim/comments/1v3bvnq/vimtex_v218/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "WinEdt": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/lgobsz",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Murfy": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1rbv3p1/there_are_tons_of_new_online_latex_editors_and_i/",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Lyra Editor": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1pixsz3/i_built_a_visual_latex_editor_because_i_hated/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ],
+    "Gitpen": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1m809pt/just_launched_gitpen_a_lightweight_online_latex/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-04",
+        "note": "Project identified in the publicly indexed post or comments."
+      }
+    ]
+  }
+}

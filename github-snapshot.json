@@ -1215,6 +1215,13 @@
       "last_commit_url": "https://github.com/zohooo/jaxedit/commit/062430f48b34121268a2166937a77327b2d83c92",
       "commits": 348,
       "commit_checked_at": "2026-11-04T11:52:36+00:00"
+    },
+    "overleaf-workshop/overleaf-workshop": {
+      "name": "overleaf-workshop/Overleaf-Workshop",
+      "stars": 1696,
+      "forks": 85,
+      "url": "https://github.com/overleaf-workshop/Overleaf-Workshop",
+      "checked_at": "2026-11-04T12:05:47+00:00"
     }
   }
 }
