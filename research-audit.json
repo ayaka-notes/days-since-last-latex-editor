@@ -551,6 +551,11 @@
       "name": "Frism",
       "query": "\"Frism\" latex editor site:reddit.com",
       "outcome": "no confirmed match retained"
+    },
+    {
+      "name": "LaTeXing",
+      "query": "site:reddit.com/r/LaTeX \"LaTeXing\" Sublime plugin",
+      "outcome": "Matched plugin-specific indexed discussion; excluded generic uses of the verb latexing and LaTeXTools results."
     }
   ],
   "additional_sources": [
@@ -566,6 +571,11 @@
     {
       "name": "Gitpen",
       "source": "https://www.reddit.com/r/LaTeX/comments/1m809pt/just_launched_gitpen_a_lightweight_online_latex/"
+    },
+    {
+      "name": "LaTeXing",
+      "source": "https://github.com/LaTeXing/LaTeXing",
+      "verification": "Official README and complete six-commit public history; 2018-01-16 bulk source import, 2018-05-16 MIT declaration, 2019-03-19 last commit. Original public release date remains unverified."
     }
   ]
 }

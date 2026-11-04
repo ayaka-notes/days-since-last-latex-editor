@@ -1226,6 +1226,27 @@
       "forks": 85,
       "url": "https://github.com/overleaf-workshop/Overleaf-Workshop",
       "checked_at": "2026-11-04T12:05:47+00:00"
+    },
+    "latexing/latexing": {
+      "name": "LaTeXing/LaTeXing",
+      "stars": 82,
+      "forks": 10,
+      "license": null,
+      "archived": false,
+      "created_at": "2014-03-23T10:02:36Z",
+      "pushed_at": "2019-03-19T06:59:18Z",
+      "url": "https://github.com/LaTeXing/LaTeXing",
+      "checked_at": "2026-11-04T13:17:28+00:00",
+      "fork": false,
+      "last_commit_at": "2019-03-19T06:59:17Z",
+      "last_commit_url": "https://github.com/LaTeXing/LaTeXing/commit/faef4a52a2928def36b01d215f3da6b80fdfb051",
+      "commits": 6,
+      "commit_checked_at": "2026-11-04T13:17:28+00:00",
+      "first_commit_at": "2018-01-16T09:13:14Z",
+      "first_commit_url": "https://github.com/LaTeXing/LaTeXing/commit/a8b4ea7b03f2f228eb521f7f7088c3131450e8b8",
+      "first_commit_sha": "a8b4ea7b03f2f228eb521f7f7088c3131450e8b8",
+      "first_commit_checked_at": "2026-11-04T13:17:28+00:00",
+      "first_commit_verified_root": true
     }
   }
 }

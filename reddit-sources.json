@@ -334,6 +334,15 @@
         "checked_at": "2026-11-04",
         "note": "Project identified in the publicly indexed post or comments."
       }
+    ],
+    "LaTeXing": [
+      {
+        "url": "https://www.reddit.com/r/Physics/comments/cb0umh",
+        "status": "indexed",
+        "relation": "discussion",
+        "checked_at": "2026-11-04",
+        "note": "Indexed 2019-07-09 comment explicitly identifies the LaTeXing package for Sublime Text and its display-math preview. This is a user discussion, not an announcement. Direct live retrieval was unavailable."
+      }
     ]
   }
 }
