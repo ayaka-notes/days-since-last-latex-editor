@@ -93,7 +93,7 @@ def build():
         if not sources and r['evidence'] and r['evidence'] not in (r['source'], r['website']):
             sources.append(link(r['evidence'], 'source', r['note']))
         main_url = r['website'] or r['source'] or r['evidence']
-        timeline.append(f'<tr><th scope="row"><i>{link(main_url, r["name"], r["description"])}</i></th><td class="date">{debut}</td><td>{link(r["source"], "repository")}</td><td class="sources">{" · ".join(sources)}</td><td>{counts}</td></tr>')
+        timeline.append(f'<tr><th scope="row"><i>{link(main_url, r["name"], r["description"])}</i></th><td class="date">{debut}</td><td>{link(r["source"], "repository")}</td><td class="sources">{"".join(sources)}</td><td>{counts}</td></tr>')
     page = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Days since last LaTeX editor</title><meta name="description" content="A growing list of LaTeX editors, with release dates, GitHub stars and original announcements.">

@@ -10,7 +10,8 @@ h1, .counter p { margin: 0; font-size: 1.17rem; font-weight: bold; }
 .timeline { margin: 1rem auto 0; border-spacing: 1rem .7rem; }
 .timeline th { text-align: right; font-weight: normal; max-width: 230px; }
 .timeline td { white-space: nowrap; vertical-align: middle; }
-.timeline .sources { white-space: normal; min-width: 95px; max-width: 235px; }
+.timeline .sources { white-space: normal; width: 105px; min-width: 0; max-width: 105px; }
+.timeline .sources a { display: block; line-height: 1.35; }
 .timeline th a { color: inherit; text-decoration: none; }
 .timeline th a:hover { text-decoration: underline; }
 .repo-counts { font-size: .85em; white-space: nowrap; font-variant-numeric: tabular-nums; }
