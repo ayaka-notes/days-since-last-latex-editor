@@ -72,7 +72,14 @@ def build():
             stamp = m.get('checked_at', 'unavailable')
             stale = ' · stale snapshot' if m.get('error') else ''
             counts = f'<span class="repo-counts" title="GitHub snapshot: {esc(stamp)}{stale}">{link(r["source"] + "/stargazers", "★ " + stars, "Stars")} · {link(r["source"] + "/forks", "⑂ " + forks, "Forks")}{" *" if stale else ""}</span>'
-        debut = f'{esc(r["date_basis"].lower())} <time datetime="{r["date"]}">{r["date"]}</time>' if r['date'] else '<span class="muted">date unverified</span>'
+        if r['date']:
+            debut = f'{esc(r["date_basis"].lower())} <time datetime="{r["date"]}">{r["date"]}</time>'
+        elif re.fullmatch(r'\d{4}(?:-\d{2})?', r.get('discussion_debut', '')):
+            debut = f'<span title="Reported in Discussion #146; exact first-release date not independently verified">reported {esc(r["discussion_debut"])}</span>'
+        elif m.get('created_at'):
+            debut = f'<span title="GitHub repository creation date, not the editor release date">repository created {esc(m["created_at"][:10])}</span>'
+        else:
+            debut = '<span class="muted">date unknown</span>'
         sources = []
         seen = set()
         if r['date']:
@@ -102,7 +109,7 @@ def build():
 <main><section class="counter" aria-labelledby="counter-title"><h1 id="counter-title">It has been</h1><div id="days" data-last-release="{latest['date']}">{days}</div><p id="sentence-end">days since the latest known new LaTeX editor</p></section>
 <div class="timeline-wrap" tabindex="0" role="region" aria-label="All LaTeX editors; scroll horizontally on small screens"><table class="timeline"><caption class="sr-only">All {len(rows)} LaTeX editors, newest verified introductions first</caption><thead class="sr-only"><tr><th>Editor</th><th>Date</th><th>Repository</th><th>Announcement and discussion</th><th>Stars / Forks</th></tr></thead><tbody>{''.join(timeline)}</tbody></table></div>
 </main><footer><p>{len(rows)} editors · {len(dated)} dated introductions · <a href="{REPO}/issues/new?template=editor.yml">add or correct an editor</a></p>
-<details class="method"><summary>Dates and sources</summary><p>Dates refer to the linked initial release or public introduction, not repository creation or routine updates. Undated projects are still included. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
+<details class="method"><summary>Dates and sources</summary><p>Initial release and public introduction dates refer to the linked event. Where these are unknown, reported months/years from Discussion #146 or GitHub repository creation dates are labelled explicitly. These fallback dates and routine updates never reset the counter. This is a curated list, not a complete census.</p><p>Reddit links may be introductions or later discussions. Removed posts are kept when surviving public comments identify the project; they do not establish a launch date. Unavailable content and deleted accounts are not reconstructed.</p><p>Star and fork counts refresh daily through GitHub Actions. An asterisk marks an older retained value after a failed lookup. Snapshot: {esc(snapshot['generated_at'])}. <a href="data.csv">Editor data</a> · <a href="reddit-sources.json">Reddit sources</a> · <a href="github-snapshot.json">GitHub snapshot</a></p></details>
 <p>Inspired by <a href="https://days-since-last-typst-editor.samake.se/">Days since last Typst editor</a> by <a href="https://github.com/sermuns">Samuel “sermuns” Åkesson</a>.</p></footer></body></html>'''
     (out / 'index.html').write_text(page)
     for name in ('style.css', 'script.js', 'favicon.svg', 'data.csv', 'github-snapshot.json', 'discussion-146.json', 'reddit-sources.json', 'research-audit.json'):

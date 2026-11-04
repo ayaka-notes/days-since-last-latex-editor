@@ -38,7 +38,9 @@ Edit `data.csv`; the site is rebuilt on every push to `main`.
 
 Only exact, reviewed introduction dates reset the counter. Repository creation,
 ordinary version updates, and month-only dates do not. Unknown dates remain
-visible. A first retained release is not proof that no earlier release existed.
+visible. When no exact introduction is known, the list shows a reported month/year
+from Discussion #146, or a GitHub repository creation date, with an explicit label.
+These fallback dates never reset the counter. A first retained release is not proof that no earlier release existed.
 The two Folio projects and two Scribe projects remain separate. The LatexDo
 desktop repository is used for its desktop app; the original link is preserved
 in `discussion-146.json`.
