@@ -1247,6 +1247,41 @@
       "first_commit_sha": "a8b4ea7b03f2f228eb521f7f7088c3131450e8b8",
       "first_commit_checked_at": "2026-11-04T13:17:28+00:00",
       "first_commit_verified_root": true
+    },
+    "leo1oel/lattice": {
+      "name": "leo1oel/lattice",
+      "stars": 57,
+      "forks": 7,
+      "license": "Apache-2.0",
+      "archived": false,
+      "created_at": "2026-07-16T05:55:35Z",
+      "pushed_at": "2026-11-06T21:20:45Z",
+      "url": "https://github.com/leo1oel/lattice",
+      "checked_at": "2026-11-07T01:14:25+00:00",
+      "fork": false,
+      "last_commit_at": "2026-11-06T21:20:42Z",
+      "last_commit_url": "https://github.com/leo1oel/lattice/commit/3f6bcd4ea80bc564603375198c668c6be1121144",
+      "commit_checked_at": "2026-11-07T01:14:25+00:00",
+      "first_commit_at": "2026-07-16T05:55:29Z",
+      "first_commit_url": "https://github.com/leo1oel/lattice/commit/74b709fdd670e14a08c30bee750ed380d936a956",
+      "first_commit_sha": "74b709fdd670e14a08c30bee750ed380d936a956",
+      "first_commit_checked_at": "2026-11-07T01:14:25+00:00",
+      "first_commit_verified_root": true
+    },
+    "dominikpeters/texstudio-espresso": {
+      "name": "DominikPeters/texstudio-espresso",
+      "stars": 1,
+      "forks": 0,
+      "license": "GPL-3.0",
+      "archived": false,
+      "created_at": "2026-11-05T13:22:05Z",
+      "pushed_at": "2026-11-05T22:32:45Z",
+      "url": "https://github.com/DominikPeters/texstudio-espresso",
+      "checked_at": "2026-11-07T01:17:51+00:00",
+      "fork": false,
+      "last_commit_at": "2026-11-05T22:32:43Z",
+      "last_commit_url": "https://github.com/DominikPeters/texstudio-espresso/commit/0946e3989e8377562554ac5f0186a28fdd1f2257",
+      "commit_checked_at": "2026-11-07T01:17:51+00:00"
     }
   }
 }

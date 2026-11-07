@@ -343,6 +343,15 @@
         "checked_at": "2026-11-04",
         "note": "Indexed 2019-07-09 comment explicitly identifies the LaTeXing package for Sublime Text and its display-math preview. This is a user discussion, not an announcement. Direct live retrieval was unavailable."
       }
+    ],
+    "TeXstudio Espresso": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1xpnkf9/texstudio_espresso_a_fork_of_texstudio_with_live/",
+        "status": "unverified",
+        "relation": "supplied introduction",
+        "checked_at": "2026-11-07",
+        "note": "User-supplied Reddit permalink names TeXstudio Espresso. The post body could not be retrieved. The date comes from the official GitHub release."
+      }
     ]
   }
 }
