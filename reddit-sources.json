@@ -347,10 +347,11 @@
     "TeXstudio Espresso": [
       {
         "url": "https://www.reddit.com/r/LaTeX/comments/1xpnkf9/texstudio_espresso_a_fork_of_texstudio_with_live/",
-        "status": "unverified",
-        "relation": "supplied introduction",
+        "status": "corroborated",
+        "relation": "public introduction",
         "checked_at": "2026-11-07",
-        "note": "User-supplied Reddit permalink names TeXstudio Espresso. The post body could not be retrieved. The date comes from the official GitHub release."
+        "note": "The supplied post describes switching between TeXpresso live preview and the standard PDF view, with magnification and SyncTeX. The maintainer independently identifies the same fork in TeXstudio issue #3616.",
+        "corroborating_url": "https://github.com/texstudio-org/texstudio/issues/3616#issuecomment-6696252098"
       }
     ]
   }
