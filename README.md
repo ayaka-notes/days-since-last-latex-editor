@@ -3,7 +3,7 @@
 A small counter and a growing directory of LaTeX editors, inspired by
 [Days since last Typst editor](https://days-since-last-typst-editor.samake.se/).
 
-The catalog contains 117 entries, including every project linked in
+The catalog contains 118 entries, including every project linked in
 [Ayakaleaf Pro Discussion #146](https://github.com/ayaka-notes/ayakaleaf-pro/discussions/146),
 LocTex from the supplied Reddit introduction, Overleaf Workshop discovered through Trendshift, and traditional editors such as
 TeXstudio, Texmaker, TeXworks, TeXShop, Kile and LyX. Historical editor plugins such as LaTeXing are included; its date marks the documented MIT declaration, not its original release.
@@ -44,7 +44,7 @@ visible. When no reviewed date is known for a non-fork repository, the list uses
 Forks never use inherited upstream commit dates as their own fallback. Projects without public GitHub history
 may use a reported month/year from Discussion #146. Both are explicitly labelled.
 Year/month-only dates never reset the counter, and are displayed at their original precision. A first retained release is not proof that no earlier release existed. Public root commits do not establish the date of private or omitted history. Overleaf uses the officially documented founding year (2011); Overleaf CE uses the ShareLaTeX open-source announcement (2014-02-21).
-The two Folio projects and two Scribe projects remain separate. The LatexDo
+The three Folio projects and two Scribe projects remain separate. The LatexDo
 desktop repository is used for its desktop app; the original link is preserved
 in `discussion-146.json`.
 
@@ -83,7 +83,7 @@ It uses the normal font size and weight with red text only.
 ## Reddit and introduction research
 
 All 110 original entries were searched individually on 2026-11-04. The expanded
-catalog has 39 dated initial releases/public introductions and 39 entries with
+catalog has 40 dated initial releases/public introductions and 40 entries with
 reviewed Reddit links. `reddit-sources.json` keeps the minimal source records;
 `research-audit.json` records the individual queries and retained outcomes.
 
