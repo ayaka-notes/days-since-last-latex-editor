@@ -353,6 +353,16 @@
         "note": "The supplied post describes switching between TeXpresso live preview and the standard PDF view, with magnification and SyncTeX. The maintainer independently identifies the same fork in TeXstudio issue #3616.",
         "corroborating_url": "https://github.com/texstudio-org/texstudio/issues/3616#issuecomment-6696252098"
       }
+    ],
+    "Folio (Gjusev)": [
+      {
+        "url": "https://www.reddit.com/r/LaTeX/comments/1xrr062/folio_selfhosted_latex_editor_for_scientific/",
+        "status": "indexed",
+        "relation": "public introduction",
+        "checked_at": "2026-11-10",
+        "note": "User-supplied share link resolves to this post. TeX.social syndication dates it 2026-11-09 and explicitly links https://github.com/Gjusev/folio; live Reddit body blocked in the browser.",
+        "syndication_url": "https://tex.social/forums/reddit/"
+      }
     ]
   }
 }
