@@ -3,7 +3,7 @@
 A small counter and a growing directory of LaTeX editors, inspired by
 [Days since last Typst editor](https://days-since-last-typst-editor.samake.se/).
 
-The catalog contains 118 entries, including every project linked in
+The catalog contains 119 entries, including every project linked in
 [Ayakaleaf Pro Discussion #146](https://github.com/ayaka-notes/ayakaleaf-pro/discussions/146),
 LocTex from the supplied Reddit introduction, Overleaf Workshop discovered through Trendshift, and traditional editors such as
 TeXstudio, Texmaker, TeXworks, TeXShop, Kile and LyX. Historical editor plugins such as LaTeXing are included; its date marks the documented MIT declaration, not its original release.
